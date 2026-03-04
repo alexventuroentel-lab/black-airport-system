@@ -1,0 +1,94 @@
+import React, { useState } from 'react';
+
+const BlackAirportWeb = () => {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    whatsapp: '',
+    tipo: 'recojo_aeropuerto',
+    fecha: '',
+    nro_vuelo: '',
+    direccion: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Enviando reserva a Black Airport Backend:", formData);
+    // Aquí iría la función fetch para conectar con tu API de Node.js
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-white font-sans">
+      {/* --- NAVBAR --- */}
+      <nav className="p-6 flex justify-between items-center border-b border-gray-800">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+            <span className="text-black font-bold">B</span>
+          </div>
+          <h1 className="text-xl font-bold tracking-tighter">BLACK <span className="text-orange-500">AIRPORT</span></h1>
+        </div>
+        <button className="bg-orange-500 text-black px-6 py-2 rounded-full font-bold hover:bg-orange-400 transition">
+          Reservar Ahora
+        </button>
+      </nav>
+
+      {/* --- HERO SECTION --- */}
+      <header className="py-20 px-6 text-center bg-gradient-to-b from-gray-900 to-black">
+        <h2 className="text-5xl md:text-7xl font-extrabold mb-4 italic">VIAJA CON CLASE</h2>
+        <p className="text-gray-400 text-xl max-w-2xl mx-auto">
+          Traslados exclusivos al aeropuerto en camionetas premium. Sin letreros de taxi, solo puntualidad y elegancia.
+        </p>
+      </header>
+
+      {/* --- FORMULARIO DE RESERVA --- */}
+      <section className="max-w-4xl mx-auto p-8 bg-gray-900 rounded-2xl border border-orange-500/30 shadow-2xl mb-20">
+        <h3 className="text-2xl font-bold mb-6 text-orange-500">Agendar Traslado</h3>
+        
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 text-black">
+          <input 
+            type="text" placeholder="Nombre Completo" 
+            className="p-3 rounded-lg bg-gray-100 focus:ring-2 focus:ring-orange-500 outline-none"
+            onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+          />
+          <input 
+            type="text" placeholder="WhatsApp (ej. +51...)" 
+            className="p-3 rounded-lg bg-gray-100"
+            onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
+          />
+          <select 
+            className="p-3 rounded-lg bg-gray-100"
+            onChange={(e) => setFormData({...formData, tipo: e.target.value})}
+          >
+            <option value="recojo_aeropuerto">Recojo del Aeropuerto</option>
+            <option value="envio_aeropuerto">Traslado al Aeropuerto</option>
+          </select>
+          <input 
+            type="datetime-local" 
+            className="p-3 rounded-lg bg-gray-100"
+            onChange={(e) => setFormData({...formData, fecha: e.target.value})}
+          />
+          <input 
+            type="text" placeholder="Nro de Vuelo (Opcional)" 
+            className="p-3 rounded-lg bg-gray-100"
+            onChange={(e) => setFormData({...formData, nro_vuelo: e.target.value})}
+          />
+          <input 
+            type="text" placeholder="Dirección de destino/recojo" 
+            className="p-3 rounded-lg bg-gray-100"
+            onChange={(e) => setFormData({...formData, direccion: e.target.value})}
+          />
+          
+          <button className="md:col-span-2 bg-orange-500 text-black py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform uppercase tracking-widest">
+            Confirmar Reserva Premium
+          </button>
+        </form>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="p-10 text-center text-gray-600 border-t border-gray-900">
+        © 2024 Black Airport - Servicio de Remisse Ejecutivo
+      </footer>
+    </div>
+  );
+};
+
+export default BlackAirportWeb;
